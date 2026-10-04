@@ -1,0 +1,39 @@
+.message-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 6px;
+  opacity: 0;
+  transition: opacity 0.15s var(--ease);
+}
+
+.message:hover .message-actions,
+.message-actions:focus-within {
+  opacity: 1;
+}
+
+.message-actions__btn {
+  background: transparent;
+  border: none;
+  color: var(--ink-400);
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s var(--ease), color 0.15s var(--ease);
+}
+
+.message-actions__btn:hover {
+  background: var(--surface-raised);
+  color: var(--ink-700);
+}
+
+.message-actions__btn--active-like {
+  color: var(--success);
+}
+
+.message-actions__btn--active-dislike {
+  color: var(--danger);
+}

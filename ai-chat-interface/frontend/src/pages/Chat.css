@@ -1,0 +1,97 @@
+.chat-page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: 100%;
+  background: var(--bg);
+}
+
+.chat-page__error {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--danger-100);
+  color: var(--danger);
+  font-size: 13px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.chat-page__error button {
+  background: transparent;
+  border: none;
+  color: var(--danger);
+  font-size: 13px;
+}
+
+/* Settings modal */
+.settings-modal__scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 15, 23, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+  padding: 16px;
+}
+
+.settings-modal {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  width: 100%;
+  max-width: 360px;
+  padding: 18px;
+}
+
+.settings-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.settings-modal__header h2 {
+  font-family: var(--font-display);
+  font-size: 16px;
+  margin: 0;
+  color: var(--ink-900);
+}
+
+.settings-modal__header button {
+  background: transparent;
+  border: none;
+  color: var(--ink-500);
+  width: 26px;
+  height: 26px;
+  border-radius: var(--radius-sm);
+}
+
+.settings-modal__header button:hover {
+  background: var(--accent-50);
+  color: var(--accent);
+}
+
+.settings-modal__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13.5px;
+  color: var(--ink-700);
+}
+
+.settings-modal__value {
+  color: var(--ink-400);
+}
+
+.settings-modal__note {
+  margin: 12px 0 0;
+  font-size: 12px;
+  color: var(--ink-400);
+}

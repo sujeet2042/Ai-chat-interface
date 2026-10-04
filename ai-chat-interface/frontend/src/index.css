@@ -1,0 +1,137 @@
+/* ---------------------------------------------------------
+   Design tokens
+   A restrained indigo-on-neutral system. One accent, used
+   sparingly, carries the whole personality of the interface.
+--------------------------------------------------------- */
+:root {
+  /* Surfaces */
+  --bg: #f7f7fb;
+  --surface: #ffffff;
+  --surface-raised: #ffffff;
+  --sidebar-bg: #fbfbfe;
+  --border: #e6e6f0;
+  --border-strong: #d8d8e6;
+
+  /* Ink */
+  --ink-900: #14141f;
+  --ink-700: #34344a;
+  --ink-500: #6b6b83;
+  --ink-400: #9292a8;
+  --ink-300: #b7b7c9;
+
+  /* Accent */
+  --accent: #5b5bd6;
+  --accent-600: #4a4ac2;
+  --accent-100: #edecfc;
+  --accent-50: #f5f4ff;
+  --accent-ink: #ffffff;
+
+  /* Semantic */
+  --success: #2fa37b;
+  --success-100: #e7f7f1;
+  --danger: #e15b5b;
+  --danger-100: #fdeceb;
+
+  /* Type */
+  --font-display: "Sora", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+
+  /* Shape & motion */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 2px rgba(20, 20, 31, 0.04);
+  --shadow-md: 0 6px 20px rgba(20, 20, 31, 0.08);
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --sidebar-width: 280px;
+}
+
+[data-theme="dark"] {
+  --bg: #0f0f17;
+  --surface: #171720;
+  --surface-raised: #1d1d28;
+  --sidebar-bg: #131319;
+  --border: #2a2a38;
+  --border-strong: #35354a;
+
+  --ink-900: #f3f3f9;
+  --ink-700: #d3d3e2;
+  --ink-500: #9c9cb4;
+  --ink-400: #7c7c94;
+  --ink-300: #58586d;
+
+  --accent: #7d7dea;
+  --accent-600: #9494f0;
+  --accent-100: #26264a;
+  --accent-50: #1c1c30;
+  --accent-ink: #0f0f17;
+
+  --success: #3ec293;
+  --success-100: #113328;
+  --danger: #f07575;
+  --danger-100: #3a1c1c;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--ink-900);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s var(--ease), color 0.25s var(--ease);
+}
+
+button,
+textarea,
+input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+textarea:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: var(--radius-pill);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
