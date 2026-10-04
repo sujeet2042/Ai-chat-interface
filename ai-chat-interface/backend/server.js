@@ -290,7 +290,7 @@ app.post(
             const parsed = JSON.parse(detail);
             if (parsed?.error?.message) errorMsg = parsed.error.message;
           } catch (_) { }
-          return res.status(502).json({ error: errorMsg, detail });
+          return res.status(502).json({ error: errorMsg });
         }
 
         const data = await response.json();
@@ -301,7 +301,7 @@ app.post(
       // 2. GOOGLE GEMINI (Free tier available at aistudio.google.com)
       // ---------------------------------------------------------------
       else if (provider === "gemini") {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${activeKey}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent`;
 
         const geminiContents = messages.map((m) => ({
           role: m.role === "assistant" ? "model" : "user",
@@ -310,19 +310,22 @@ app.post(
 
         const response = await fetch(url, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            "x-goog-api-key": activeKey,
+          },
           body: JSON.stringify({ contents: geminiContents }),
         });
 
         if (!response.ok) {
           const detail = await response.text();
-          console.error("Gemini API error:", response.status, detail);
+          console.error("Gemini API error:", response.status);
           let errorMsg = `Gemini API error (${response.status})`;
           try {
             const parsed = JSON.parse(detail);
             if (parsed?.error?.message) errorMsg = parsed.error.message;
           } catch (_) { }
-          return res.status(502).json({ error: errorMsg, detail });
+          return res.status(502).json({ error: errorMsg });
         }
 
         const data = await response.json();
@@ -364,13 +367,13 @@ app.post(
 
         if (!response.ok) {
           const detail = await response.text();
-          console.error("OpenAI-compatible API error:", response.status, detail);
+          console.error("OpenAI-compatible API error:", response.status);
           let errorMsg = `API error (${response.status})`;
           try {
             const parsed = JSON.parse(detail);
             if (parsed?.error?.message) errorMsg = parsed.error.message;
           } catch (_) { }
-          return res.status(502).json({ error: errorMsg, detail });
+          return res.status(502).json({ error: errorMsg });
         }
 
         const data = await response.json();
@@ -403,7 +406,7 @@ app.post(
 
         if (!response.ok) {
           const detail = await response.text();
-          console.error("Anthropic API error:", response.status, detail);
+          console.error("Anthropic API error:", response.status);
 
           let errorMsg = "Anthropic API request failed.";
           try {
@@ -415,7 +418,6 @@ app.post(
 
           return res.status(502).json({
             error: errorMsg,
-            detail,
           });
         }
 
@@ -453,7 +455,7 @@ app.listen(PORT, () => {
   console.log(`Backend listening on http://localhost:${PORT}`);
   const gKey = (process.env.GROQ_API_KEY || process.env.GROQ_KEY || "").trim();
   const status = gKey
-    ? `LOADED (prefix: ${gKey.slice(0, 7)}...)`
+    ? "LOADED (configured securely)"
     : "NOT LOADED / EMPTY in backend/.env";
   console.log(`[Groq Status] GROQ_API_KEY is: ${status}`);
 });

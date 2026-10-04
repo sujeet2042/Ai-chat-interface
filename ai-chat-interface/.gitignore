@@ -1,21 +1,71 @@
-# Dependencies
+# ====================================================================
+# DEPENDENCIES
+# ====================================================================
 node_modules/
 */node_modules/
+.pnp
+.pnp.js
 
-# Environment variables & secrets
+# ====================================================================
+# ENVIRONMENT VARIABLES & SECRETS (NEVER COMMIT)
+# ====================================================================
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-backend/.env
-frontend/.env
+.env.*
+*.env
+backend/.env*
+frontend/.env*
+!*.env.example
+!**/.env.example
 
-# Production builds
+# ====================================================================
+# PRIVATE KEYS, CERTIFICATES & CREDENTIALS
+# ====================================================================
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+*.pkcs12
+*.id_rsa
+id_rsa*
+id_ed25519*
+credentials.json
+client_secret*.json
+serviceAccount*.json
+service-account*.json
+*.keystore
+secrets.*
+
+# ====================================================================
+# SENSITIVE DOCUMENTS, UPLOADS & LOCAL DATA
+# ====================================================================
+uploads/
+documents/
+docs_private/
+attachments/
+*.sqlite
+*.sqlite3
+*.db
+*.dump
+*.sql
+*.csv
+*.xlsx
+*.pdf
+*.docx
+*.doc
+
+# ====================================================================
+# PRODUCTION BUILDS & CACHE
+# ====================================================================
 build/
 dist/
+.cache/
+.parcel-cache/
 
-# Logs
+# ====================================================================
+# LOGS
+# ====================================================================
 logs/
 *.log
 npm-debug.log*
@@ -24,11 +74,14 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Editor and OS files
+# ====================================================================
+# OS & EDITOR ARTIFACTS
+# ====================================================================
 .DS_Store
 Thumbs.db
 .vscode/
 .idea/
+.history/
 *.suo
 *.ntvs*
 *.njsproj
