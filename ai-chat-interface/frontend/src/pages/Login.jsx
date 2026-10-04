@@ -2,10 +2,31 @@ import React, { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import "./Login.css";
 
+function getEmailSuggestion(email) {
+  if (!email || !email.includes("@")) return null;
+  const typos = {
+    "gamil.com": "gmail.com",
+    "gmal.com": "gmail.com",
+    "gmial.com": "gmail.com",
+    "gmaill.com": "gmail.com",
+    "gmai.com": "gmail.com",
+    "yaho.com": "yahoo.com",
+    "hotmial.com": "hotmail.com",
+    "outlok.com": "outlook.com",
+  };
+  const parts = email.split("@");
+  if (parts.length === 2 && typos[parts[1].toLowerCase().trim()]) {
+    return `${parts[0]}@${typos[parts[1].toLowerCase().trim()]}`;
+  }
+  return null;
+}
+
 function Login() {
   const { login, signup, isLoading, error, setError } = useAuth();
   const [mode, setMode] = useState("login"); // "login" | "signup"
   const [form, setForm] = useState({ name: "", email: "", password: "" });
+
+  const emailSuggestion = getEmailSuggestion(form.email);
 
   const updateField = (field) => (e) =>
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
@@ -79,6 +100,21 @@ function Login() {
               onChange={updateField("email")}
               placeholder="you@example.com"
             />
+            {emailSuggestion && (
+              <span className="auth-form__hint">
+                Did you mean{" "}
+                <button
+                  type="button"
+                  className="auth-form__hint-btn"
+                  onClick={() =>
+                    setForm((prev) => ({ ...prev, email: emailSuggestion }))
+                  }
+                >
+                  {emailSuggestion}
+                </button>
+                ?
+              </span>
+            )}
           </label>
 
           <label className="auth-form__field">

@@ -111,8 +111,16 @@ router.post("/login", async (req, res) => {
     });
 
     if (!user) {
+      let typoHint = "";
+      if (/@(gamil|gmal|gmial|gmaill|gmai)\.com$/.test(normalizedEmail)) {
+        const corrected = normalizedEmail.replace(/@(gamil|gmal|gmial|gmaill|gmai)\.com$/, "@gmail.com");
+        const altUser = await User.findOne({ email: corrected });
+        if (altUser) {
+          typoHint = ` Did you mean ${corrected}?`;
+        }
+      }
       return res.status(401).json({
-        error: "Invalid email or password.",
+        error: `Invalid email or password.${typoHint}`,
       });
     }
 
