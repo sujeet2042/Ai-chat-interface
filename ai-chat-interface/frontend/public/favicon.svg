@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366F1" />
+      <stop offset="100%" stop-color="#4338CA" />
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1" stdDeviation="0.8" flood-color="#000000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+  <rect width="32" height="32" rx="8" fill="url(#brandGrad)" />
+  <!-- Primary Sparkle -->
+  <path d="M16 6 L18.4 13.4 L26 16 L18.4 18.6 L16 26 L13.6 18.6 L6 16 L13.6 13.4 Z" fill="#FFFFFF" filter="url(#softGlow)" />
+  <!-- Small accent sparkle top-right -->
+  <path d="M24 6.5 L24.7 8.3 L26.5 9 L24.7 9.7 L24 11.5 L23.3 9.7 L21.5 9 L23.3 8.3 Z" fill="#E0E7FF" opacity="0.9" />
+</svg>
